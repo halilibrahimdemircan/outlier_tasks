@@ -1,0 +1,44 @@
+body {
+    background-color: #f0f0f0;
+}
+
+#start-button {
+    background-color: black;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#game-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+#clicks-remaining {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#grid-container {
+    display: inline-block;
+}
+
+.grid-cell {
+    width: 30px;
+    height: 30px;
+    background-color: gray;
+    border: 1px solid black;
+    display: inline-block;
+    margin: -1px 0 0 -1px;
+}
+
+.hit {
+    background-color: red;
+}
+
+.miss {
+    background-color: blue;
+}
