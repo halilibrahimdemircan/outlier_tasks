@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Carousel</title>
+    <style>
+        /* Style the carousel container */
+        .carousel-container {
+            position: relative;
+            width: 200px;
+            height: 300px;
+            margin: 0 auto;
+        }
+
+        /* Style the carousel */
+        .carousel {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Style the images */
+        .carousel img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+        }
+
+        /* Style the active image */
+        .carousel img.active {
+            display: block;
+        }
+
+        /* Style the buttons */
+        .button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .prev-button {
+            left: -12px;
+        }
+
+        .next-button {
+            right: -12px;
+        }
+
+        /* Style the sequence number */
+        .sequence-number {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 16px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="carousel-container">
+        <div class="carousel">
+            <img src="https://picsum.photos/id/237/200/300" class="active">
+            <img src="https://picsum.photos/id/238/200/300">
+            <img src="https://picsum.photos/id/239/200/300">
+            <img src="https://picsum.photos/id/240/200/300">
+            <img src="https://picsum.photos/id/241/200/300">
+        </div>
+        <span class="button prev-button">&lt;</span>
+        <span class="button next-button">&gt;</span>
+        <span class="sequence-number">1/5</span>
+    </div>
+
+    <script>
+        // Get the carousel and images
+        const carousel = document.querySelector('.carousel');
+        const images = carousel.querySelectorAll('img');
+        const prevButton = document.querySelector('.prev-button');
+        const nextButton = document.querySelector('.next-button');
+        const sequenceNumber = document.querySelector('.sequence-number');
+
+        // Initialize the current image index
+        let currentIndex = 0;
+
+        // Function to update the sequence number
+        function updateSequenceNumber() {
+            sequenceNumber.textContent = `${currentIndex + 1}/${images.length}`;
+        }
+
+        // Function to show the next image
+        function showNextImage() {
+            images[currentIndex].classList.remove('active');
+            currentIndex = (currentIndex + 1) % images.length;
+            images[currentIndex].classList.add('active');
+            updateSequenceNumber();
+        }
+
+        // Function to show the previous image
+        function showPreviousImage() {
+            images[currentIndex].classList.remove('active');
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            images[currentIndex].classList.add('active');
+            updateSequenceNumber();
+        }
+
+        // Add event listeners to the buttons
+        prevButton.addEventListener('click', showPreviousImage);
+        nextButton.addEventListener('click', showNextImage);
+
+        // Update the sequence number initially
+        updateSequenceNumber();
+
+        // Set interval to change the image every 5 seconds
+        setInterval(showNextImage, 5000);
+    </script>
+</body>
+</html>
