@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resume Card</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f3f4f6;
+      font-family: Arial, sans-serif;
+    }
+    .card {
+      background-color: #fff;
+      width: 320px;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      text-align: center;
+    }
+    .profile img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      margin-bottom: 10px;
+    }
+    .profile h2 {
+      font-size: 1.5em;
+      color: #333;
+    }
+    .profile p {
+      font-size: 1em;
+      color: #666;
+      margin-top: 5px;
+    }
+    .bio {
+      margin: 10px 0;
+      font-size: 0.9em;
+      display: none;
+    }
+    .skills .skill {
+      margin-top: 15px;
+    }
+    .skills .skill span {
+      font-size: 0.9em;
+      color: #333;
+    }
+    .progress-bar {
+      background-color: #e0e0e0;
+      border-radius: 5px;
+      overflow: hidden;
+      margin-top: 5px;
+      height: 8px;
+    }
+    .progress {
+      background-color: #4caf50;
+      height: 100%;
+      border-radius: 5px 0 0 5px;
+    }
+    .social-media {
+      margin-top: 20px;
+    }
+    .social-media .icon {
+      display: inline-block;
+      margin: 0 10px;
+      color: #666;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .social-media .icon:hover {
+      color: #4caf50;
+    }
+    .toggle-btn {
+      background-color: #4caf50;
+      color: #fff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="profile">
+      <img src="https://fastly.picsum.photos/id/0/5000/3333.jpg?hmac=_j6ghY5fCfSD6tvtcV74zXivkJSPIfR9B8w34XeQmvU" alt="Profile Picture">
+      <h2>Halil Ibrahim Demircan</h2>
+      <p>Web Developer</p>
+      <button class="toggle-btn" onclick="toggleBio()">About Me</button>
+      <p class="bio">As a passionate Full Stack Developer, my journey is marked by an insatiable curiosity for writing new, innovative code and crafting complex solutions. I thrive on challenges, leveraging strong creative thinking and determination to effectively create algorithms.</p>
+    </div>
+    <div class="skills">
+      <div class="skill">
+        <span>HTML</span>
+        <div class="progress-bar"><div class="progress" style="width: 90%;"></div></div>
+      </div>
+      <div class="skill">
+        <span>CSS</span>
+        <div class="progress-bar"><div class="progress" style="width: 80%;"></div></div>
+      </div>
+      <div class="skill">
+        <span>JavaScript</span>
+        <div class="progress-bar"><div class="progress" style="width: 70%;"></div></div>
+      </div>
+    </div>
+    <div class="social-media">
+      <a href="https://www.linkedin.com/in/halilibrahimdemircan/" class="icon">LinkedIn</a>
+      <a href="https://github.com/halilibrahimdemircan" class="icon">GitHub</a>
+    </div>
+  </div>
+
+  <script>
+    function toggleBio() {
+      const bio = document.querySelector('.bio');
+      if (bio.style.display === 'none' || bio.style.display === '') {
+        bio.style.display = 'block';
+      } else {
+        bio.style.display = 'none';
+      }
+    }
+  </script>
+</body>
+</html>
