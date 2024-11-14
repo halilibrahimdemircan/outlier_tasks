@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resume Card</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Center the card vertically and horizontally on the page */
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f3f4f6;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Main card container styling */
+    .card {
+      background-color: #fff;
+      width: 320px;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      position: relative; /* Required for absolute positioning of bio */
+    }
+
+    /* Profile section styling */
+    .profile img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%; /* Creates circular profile image */
+      margin-bottom: 10px;
+    }
+
+    .profile h2 {
+      font-size: 1.5em;
+      color: #333;
+    }
+
+    .profile p {
+      font-size: 1em;
+      color: #666;
+      margin-top: 5px;
+    }
+
+    /* Bio section with overlay effect */
+    .bio {
+      margin: 10px 0;
+      font-size: 0.9em;
+      display: none; /* Hidden by default */
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #fff;
+      padding: 20px;
+      overflow-y: auto; /* Enables scrolling for long content */
+    }
+
+    /* Skills section styling */
+    .skills .skill {
+      margin-top: 15px;
+    }
+
+    .skills .skill span {
+      font-size: 0.9em;
+      color: #333;
+    }
+
+    /* Progress bar styling */
+    .progress-bar {
+      background-color: #e0e0e0;
+      border-radius: 5px;
+      overflow: hidden;
+      margin-top: 5px;
+      height: 8px;
+    }
+
+    .progress {
+      height: 100%;
+      border-radius: 5px 0 0 5px;
+    }
+
+    /* Individual progress bar colors */
+    .html-progress {
+      background-color: #ff0000;
+    }
+
+    .css-progress {
+      background-color: #00ff00;
+    }
+
+    .js-progress {
+      background-color: #ffff00;
+    }
+
+    /* Social media links section */
+    .social-media {
+      margin-top: 20px;
+    }
+
+    .social-media .icon {
+      display: inline-block;
+      margin: 0 10px;
+      color: #666;
+      text-decoration: none;
+      transition: color 0.3s; /* Smooth color transition on hover */
+    }
+
+    .social-media .icon:hover {
+      color: #4caf50;
+    }
+
+    /* Toggle button styling with animation */
+    .toggle-btn {
+      background-color: #4caf50;
+      color: #fff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 15px;
+      animation: bounce 2s infinite; /* Continuous bounce animation */
+    }
+
+    /* Back button styling */
+    .back-btn {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #4caf50;
+      color: #fff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      display: none;
+    }
+
+    /* Bounce animation keyframes */
+    @keyframes bounce {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.1);
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Main card container -->
+  <div class="card">
+    <!-- Profile section with image, name, and title -->
+    <div class="profile">
+      <img src="https://fastly.picsum.photos/id/0/5000/3333.jpg?hmac=_j6ghY5fCfSD6tvtcV74zXivkJSPIfR9B8w34XeQmvU" alt="Profile Picture">
+      <h2>Halil Ibrahim Demircan</h2>
+      <p>Web Developer</p>
+      <!-- Toggle button for showing/hiding bio -->
+      <button class="toggle-btn" onclick="toggleBio()">About Me</button>
+      <!-- Bio section (hidden by default) -->
+      <p class="bio">As a passionate Full Stack Developer, my journey is marked by an insatiable curiosity for writing new, innovative code and crafting complex solutions. I thrive on challenges, leveraging strong creative thinking and determination to effectively create algorithms.</p>
+    </div>
+
+    <!-- Skills section with progress bars -->
+    <div class="skills">
+      <div class="skill">
+        <span>HTML</span>
+        <div class="progress-bar"><div class="progress html-progress" style="width: 90%;"></div></div>
+      </div>
+      <div class="skill">
+        <span>CSS</span>
+        <div class="progress-bar"><div class="progress css-progress" style="width: 80%;"></div></div>
+      </div>
+      <div class="skill">
+        <span>JavaScript</span>
+        <div class="progress-bar"><div class="progress js-progress" style="width: 70%;"></div></div>
+      </div>
+    </div>
+
+    <!-- Social media links -->
+    <div class="social-media">
+      <a href="https://www.linkedin.com/in/halilibrahimdemircan/" class="icon" target="_blank">LinkedIn</a>
+      <a href="https://github.com/halilibrahimdemircan" class="icon" target="_blank">GitHub</a>
+    </div>
+
+    <!-- Back button (hidden by default) -->
+    <button class="back-btn" onclick="hideBio()">Back</button>
+  </div>
+
+  <script>
+    /**
+     * Toggles the visibility of the bio section
+     * When shown, the bio overlays the entire card
+     * When hidden, the card returns to its original state
+     */
+    function toggleBio() {
+      const bio = document.querySelector('.bio');
+      const backBtn = document.querySelector('.back-btn');
+      const skills = document.querySelector('.skills');
+      const socialMedia = document.querySelector('.social-media');
+      const card = document.querySelector('.card');
+      const cardHeight = card.offsetHeight;
+      
+      // Adjust card height to previous value
+      card.style.height = `${cardHeight}px`;
+      
+      // Check if bio is currently hidden
+      if (bio.style.display === 'none' || bio.style.display === '') {
+        // Show bio and back button, hide skills and social media
+        bio.style.display = 'block';
+        backBtn.style.display = 'block';
+        skills.style.display = 'none';
+        socialMedia.style.display = 'none';
+      }
+    }
+
+    /**
+     * Hides the bio section and shows the original card content
+     */
+    function hideBio() {
+      const bio = document.querySelector('.bio');
+      const backBtn = document.querySelector('.back-btn');
+      const skills = document.querySelector('.skills');
+      const socialMedia = document.querySelector('.social-media');
+      
+      // Hide bio and back button, show skills and social media
+      bio.style.display = 'none';
+      backBtn.style.display = 'none';
+      skills.style.display = 'block';
+      socialMedia.style.display = 'block';
+    }
+  </script>
+</body>
+</html>
