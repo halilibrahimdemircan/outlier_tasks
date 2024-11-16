@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alice's Store</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            padding: 20px;
+            justify-content: center;
+        }
+
+        .product {
+            width: 200px;
+            border: 1px solid #ddd;
+            padding: 15px;
+            text-align: center;
+            border-radius: 5px;
+        }
+
+        .product img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .product div {
+            font-size: 1.1em;
+            margin: 10px 0;
+        }
+
+        .product p {
+            font-size: 0.9em;
+            color: #333;
+        }
+
+        .product .price {
+            font-weight: bold;
+            margin: 10px 0;
+            color: #007bff;
+        }
+
+        .btn {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .btn:hover {
+            background-color: #218838;
+        }
+
+        .cart {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .cart-items {
+            margin: 20px;
+            font-size: 1.1em;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Alice's Store</h1>
+
+<div class="container">
+    <div class="product" data-name="Leather Wallet" data-price="19.99">
+        <img src="https://picsum.photos/id/1001/200/200" alt="Leather Wallet">
+        <div>Leather Wallet</div>
+        <p>High-quality leather wallet.</p>
+        <div class="price">$19.99</div>
+        <button class="btn" onclick="addToCart('Leather Wallet', 19.99)">Add to Cart</button>
+    </div>
+    <div class="product" data-name="Wireless Earbuds" data-price="29.99">
+        <img src="https://picsum.photos/id/1002/200/200" alt="Wireless Earbuds">
+        <div>Wireless Earbuds</div>
+        <p>Enjoy music with these compact earbuds.</p>
+        <div class="price">$29.99</div>
+        <button class="btn" onclick="addToCart('Wireless Earbuds', 29.99)">Add to Cart</button>
+    </div>
+    <div class="product" data-name="Classic Watch" data-price="39.99">
+        <img src="https://picsum.photos/id/1025/200/200" alt="Classic Watch">
+        <div>Classic Watch</div>
+        <p>Elegance for everyday style.</p>
+        <div class="price">$39.99</div>
+        <button class="btn" onclick="addToCart('Classic Watch', 39.99)">Add to Cart</button>
+    </div>
+    <div class="product" data-name="Sunglasses" data-price="24.99">
+        <img src="https://picsum.photos/id/1015/200/200" alt="Sunglasses">
+        <div>Sunglasses</div>
+        <p>Protect your eyes with style.</p>
+        <div class="price">$24.99</div>
+        <button class="btn" onclick="addToCart('Sunglasses', 24.99)">Add to Cart</button>
+    </div>
+    <div class="product" data-name="Bluetooth Speaker" data-price="34.99">
+        <img src="https://picsum.photos/id/1009/200/200" alt="Bluetooth Speaker">
+        <div>Bluetooth Speaker</div>
+        <p>Enjoy with high-quality sound.</p>
+        <div class="price">$34.99</div>
+        <button class="btn" onclick="addToCart('Bluetooth Speaker', 34.99)">Add to Cart</button>
+    </div>
+    <div class="product" data-name="Backpack" data-price="44.99">
+        <img src="https://picsum.photos/id/1027/200/200" alt="Backpack">
+        <div>Backpack</div>
+        <p>It is perfect for everyday use.</p>
+        <div class="price">$44.99</div>
+        <button class="btn" onclick="addToCart('Backpack', 44.99)">Add to Cart</button>
+    </div>
+    <div class="product" data-name="Smartphone Stand" data-price="15.99">
+        <img src="https://picsum.photos/id/103/200/200" alt="Smartphone Stand">
+        <div>Smartphone Stand</div>
+        <p>Adjustable stand for smartphones.</p>
+        <div class="price">$15.99</div>
+        <button class="btn" onclick="addToCart('Smartphone Stand', 15.99)">Add to Cart</button>
+    </div>
+    <div class="product" data-name="Portable Charger" data-price="29.99">
+        <img src="https://picsum.photos/id/1010/200/200" alt="Portable Charger">
+        <div>Portable Charger</div>
+        <p>Charge your devices anywhere with this compact charger.</p>
+        <div class="price">$29.99</div>
+        <button class="btn" onclick="addToCart('Portable Charger', 29.99)">Add to Cart</button>
+    </div>
+    <div class="product" data-name="Water Bottle" data-price="12.99">
+        <img src="https://picsum.photos/id/1040/200/200" alt="Water Bottle">
+        <div>Water Bottle</div>
+        <p>Reusable water bottle.</p>
+        <div class="price">$12.99</div>
+        <button class="btn" onclick="addToCart('Water Bottle', 12.99)">Add to Cart</button>
+    </div>
+</div>
+
+<div class="cart">
+    <div>Shopping Cart</div>
+    <div class="cart-items" id="cartItems">Your cart is empty.</div>
+</div>
+
+<script>
+    const cart = [];
+
+    function addToCart(name, price) {
+        const product = { name, price };
+        cart.push(product);
+        displayCart();
+    }
+
+    function displayCart() {
+        const cartItemsDiv = document.getElementById('cartItems');
+        if (cart.length === 0) {
+            cartItemsDiv.innerHTML = "Your cart is empty.";
+            return;
+        }
+
+        let cartHTML = "<ul>";
+        cart.forEach((item, index) => {
+            cartHTML += `<li>${item.name} - $${item.price.toFixed(2)}</li>`;
+        });
+        cartHTML += "</ul>";
+        cartItemsDiv.innerHTML = cartHTML;
+    }
+</script>
+
+</body>
+</html>
